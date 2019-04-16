@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.fill-remaining-space{
+    flex: 1 1 auto;
+}
+.center-card{
+    height: 200px;
+    position: relative;
+}
+.login-card{
+    max-width: 400px;
+    margin: 0;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.login-container > *{
+    width: 100%;
+    padding: 4px;
+    margin: 2px;
+}
+.header-font{
+    font-size: 32px;
+    font-weight: bold;
+}
+.files-card{
+    display: block;
+    position: relative;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+    margin: 8px;
+    padding: 4px
+}
+
+.controls-container> *{
+    width: 100%;
+    padding: 4px;
+    margin: 2px;
+}
+

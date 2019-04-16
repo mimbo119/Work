@@ -1,0 +1,23 @@
+<mat-toolbar>
+  <span>New File</span>
+</mat-toolbar>
+<div style=" height:100%; width: 100%; position: relative;">
+  <form class="normal-form" (submit)="onSubmit()">
+    <div class="controls-container">
+      <input type="hidden" formControlName="$key">
+      <mat-form-field>
+        <input formControlName="" matInput placeholder="File Name">
+        <mat-error>This field is mandatory</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="" matInput placeholder="Type" required>
+        <mat-error>This field is mandatory</mat-error>
+      </mat-form-field>
+      <div class="button_row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+        <button mat-raised-button color="warn" (click)="onClear()">Clear!</button>
+      </div>
+
+    </div>
+  </form>
+</div>
