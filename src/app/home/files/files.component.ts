@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material'
 import { FilesAddComponent } from '../files-add/files-add.component';
+import { BooksComponent } from '../books/books.component';
 
 @Component({
   selector: 'app-files',
@@ -9,7 +10,8 @@ import { FilesAddComponent } from '../files-add/files-add.component';
 })
 export class FilesComponent implements OnInit {
 
-  constructor(private dialog : MatDialog) { }
+  constructor(private dialog : MatDialog,
+              private books : BooksComponent) { }
 
   array = [
     { id : 1 , name : 'Yellow'},
