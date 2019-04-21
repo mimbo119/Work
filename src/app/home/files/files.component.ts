@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material'
 import { FilesAddComponent } from '../files-add/files-add.component';
 import { BooksComponent } from '../books/books.component';
+import { FilesAddService } from 'src/app/shared/files-add.service';
 
 @Component({
   selector: 'app-files',
@@ -11,21 +12,12 @@ import { BooksComponent } from '../books/books.component';
 export class FilesComponent implements OnInit {
 
   constructor(private dialog : MatDialog,
-              private books : BooksComponent) { }
+              private books : BooksComponent,
+              private service : FilesAddService) { }
 
-  array = [
-    { id : 1 , name : 'Yellow'},
-    { id : 2 , name : 'Blue'},
-    { id : 3 , name : 'Yellow'},
-    { id : 4 , name : 'Blue'}
-  ];
 
   breakpoint = 2;
-
-  ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
-  }
-
+  
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 2;
   }
@@ -41,5 +33,25 @@ export class FilesComponent implements OnInit {
     dialogConfig.minHeight = "50%";
     this.dialog.open(FilesAddComponent, dialogConfig);
   }
+
+  ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
+    this.service.getFile().subscribe(
+      list =>{
+        let array = list.map(item => {
+          return {
+            $key : item.key,
+            ...item.payload.val()           
+          };
+        // });
+        
+        // this.listData = new MatTableDataSource(array);
+        // this.test = this.listData.filteredData;
+        // this.listData.sort = this.sort2;
+        // this.listData.paginator = this.pages;
+      }
+    );    
+  })
+}
 
 }
