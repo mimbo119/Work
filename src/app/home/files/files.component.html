@@ -12,19 +12,24 @@
   <span>Add Files</span>
 </button>
 <mat-grid-list [cols]="breakpoint" rowHeight="400px" (window:resize)="onResize($event)">
-  <div *ngFor = "let item of array">
+  <div *ngFor = "let item of fileShow">
     <mat-grid-tile>
       <mat-card class="files-card">
         <mat-card-header>
-          <mat-card-title>{{item.fileName}}</mat-card-title>
-          <h3>{{item.fileType}}</h3>
+          <mat-card-title color="primary">{{item.fileName}}</mat-card-title>
+          <span class="fill-remaining-space"></span>
+          <div>
+            <button mat-icon-button (click) = "onEdit(item)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click) = "onDelete(item.$key)"><mat-icon>delete_outline</mat-icon>></button>
+          </div>
         </mat-card-header>
+        <h4>Type : {{item.fileType}}</h4>
         <mat-card-content>
           <p>
             {{item.fileDes}}
           </p>
           <p>
-            <!-- <app-books [fileItem]="item.id"></app-books> -->
+            <app-books [fileItem]="item.$key"></app-books>
           </p>
         </mat-card-content>
       </mat-card>

@@ -1,23 +1,23 @@
 <mat-toolbar color="primary">
-  <span>{{ service.formFile.controls['$key'].value?"Edit File"  : "New File"}}</span>
+  <span>{{ service.formBook.controls['$key'].value?"Edit Book"  : "New Book"}}</span>
 </mat-toolbar>
 <div style=" height:60%; width: 100%; position: relative;">
-  <form [formGroup]="service.formFile" class="normal-form" (submit)="onSubmit()">
+  <form [formGroup]="service.formBook" class="normal-form" (submit)="onSubmit()">
     <div class="controls-container">
       <input type="hidden" formControlName="$key">
       <mat-form-field>
-        <input formControlName="fileName" matInput placeholder="File Name">
+        <input formControlName="bookName" matInput placeholder="Book Name">
         <mat-error>This field is mandatory</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="fileType" matInput placeholder="Type">
+        <input formControlName="bookWriter" matInput placeholder="Writer">
         <mat-error>This field is mandatory</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="fileDes" matInput placeholder="Description">
+        <input formControlName="bookDes" matInput placeholder="Description">
       </mat-form-field>
       <div class="button_row">
-        <button mat-raised-button color="primary" type="submit" [disabled]="service.formFile.invalid">Submit</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="service.formBook.invalid">Submit</button>
         <button mat-raised-button color="warn" (click)="onClear()">Clear!</button>
       </div>
     </div>

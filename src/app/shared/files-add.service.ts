@@ -49,4 +49,8 @@ export class FilesAddService {
   deleteFile($key : string){
     this.fileList.remove($key);
   }
+
+  populate(row){
+    this.formFile.setValue(row);
+  }
 }

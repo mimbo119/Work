@@ -35,6 +35,11 @@
     margin: 8px;
     padding: 4px
 }
+.files-card mat-card-title{
+    font-size: 40;
+    font-weight: bold;
+    text-transform: uppercase
+}
 
 .controls-container> *{
     width: 100%;

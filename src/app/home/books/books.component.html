@@ -1,5 +1,8 @@
-<div *ngFor = "let item of bookArray">
-  <p>
-    books works! for {{item.name}}
-  </p>  
-</div>
+<button mat-raised-button style="margin:8px" (click)="onCreateBooks(fileItem)">
+  <mat-icon>
+    <i class="material-icons">
+      add_circle_outline
+    </i>
+  </mat-icon>
+  <span>Add Books</span>
+</button>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogConfig, MatDialog } from '@angular/material'
+import { MatDialogConfig, MatDialog, MatTableDataSource } from '@angular/material'
 import { FilesAddComponent } from '../files-add/files-add.component';
 import { BooksComponent } from '../books/books.component';
 import { FilesAddService } from 'src/app/shared/files-add.service';
@@ -14,8 +14,9 @@ export class FilesComponent implements OnInit {
   constructor(private dialog : MatDialog,
               private books : BooksComponent,
               private service : FilesAddService) { }
-
-
+  
+  listData : MatTableDataSource<any>;
+  fileShow = [];
   breakpoint = 2;
   
   onResize(event) {
@@ -45,13 +46,31 @@ export class FilesComponent implements OnInit {
           };
         // });
         
-        // this.listData = new MatTableDataSource(array);
-        // this.test = this.listData.filteredData;
+        
         // this.listData.sort = this.sort2;
         // this.listData.paginator = this.pages;
       }
-    );    
-  })
-}
+      
+    );  
+    this.listData = new MatTableDataSource(array);
+    this.fileShow = this.listData.filteredData;  
+    })
+  }
+
+  onEdit(row){
+    this.service.populate(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width= "70%";
+    dialogConfig.height= "70%";
+    dialogConfig.minWidth = "25%";
+    this.dialog.open(FilesAddComponent, dialogConfig);
+  }
+
+  onDelete($key){
+    if(confirm('Are you sure?')){
+    this.service.deleteFile($key);
+    }
+  }
 
 }

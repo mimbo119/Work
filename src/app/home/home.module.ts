@@ -15,12 +15,15 @@ import { FilesAddComponent } from './files-add/files-add.component';
 import { MaterialModule } from '../material/material.module';
 import { BooksComponent } from './books/books.component';
 import { FilesAddService } from '../shared/files-add.service';
+import { BooksAddComponent } from './books-add/books-add.component';
+import { BookService } from '../shared/book.service';
 
 @NgModule({
   declarations: [
     FilesComponent,
     FilesAddComponent,
-    BooksComponent
+    BooksComponent,
+    BooksAddComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,7 @@ import { FilesAddService } from '../shared/files-add.service';
     AngularFireDatabaseModule,
   ],
   
-  providers : [BooksComponent, FilesAddService],
-  entryComponents : [FilesAddComponent]
+  providers : [BooksComponent, FilesAddService, BookService],
+  entryComponents : [FilesAddComponent, BooksAddComponent]
 })
 export class HomeModule { }
