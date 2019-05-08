@@ -6,3 +6,38 @@
   </mat-icon>
   <span>Add Books</span>
 </button>
+<div *ngFor = "let item of bookArray">
+  <p>
+    books works! for {{item.bookName}}
+  </p>
+</div>
+<div class="mat-elevation-z8">
+  <mat-table  *ngFor = "let item of bookArray" matSort>
+    <ng-container matColumnDef="bookName">
+        <mat-header-cell 
+        *matHeaderCellDef 
+        mat-sort-header> Book Name </mat-header-cell>
+        <mat-cell>{{item.bookName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="bookWriter">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Writer </mat-header-cell>
+        <mat-cell>{{item.bookWriter}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="bookDes">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell>{{item.bookDes}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button (click) = "onEdit(row)"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button color="warn" (click) = "onDelete(row.$key)"><mat-icon>delete_outline</mat-icon>></button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions] = "[5, 10, 25, 50, 100]" [pageSize] = "5" showFirstLastButtons >
+
+  </mat-paginator>
+</div>

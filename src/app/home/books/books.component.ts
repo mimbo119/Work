@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogConfig, MatDialog, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { MatDialogConfig, MatDialog, MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { BooksAddComponent } from '../books-add/books-add.component';
 import { BookService } from 'src/app/shared/book.service';
 
@@ -15,25 +15,25 @@ export class BooksComponent implements OnInit {
   constructor(private service : BookService,
               private dialog : MatDialog) { }
   
+  listData : MatTableDataSource<any>;
+  bookShow = [];
   bookArray = [];
+  displayedColumns : string[] = ['bookName', 'bookWriter', 'bookDes', 'actions' ];
+  @ViewChild(MatSort) sort2 : MatSort;
+  @ViewChild(MatPaginator) pages : MatPaginator;
   
-  array = [
-    { id: "1", name: 'X' },
-    { id: "2", name: 'YY' },
-    { id: "2", name: 'Y' },
-    { id: "3", name: 'Z' }
-  ];
+  arrayBook = [];
 
   bookItem(file){
-    for (var i=0; i<=this.array.length; i++){
-      if(this.array[i].id == file){
-        this.bookArray.push(this.array[i]);
+    for (var i=0; i<=this.arrayBook.length; i++){
+      if(this.arrayBook[i].fileId == file){
+        this.bookArray.push(this.arrayBook[i]);
       }
     }
   }
   onCreateBooks(fileItem){
     console.log(fileItem)
-    // this.service.initializeFormDept();
+    this.service.getFileItem(fileItem);
     const dialogConfig = new MatDialogConfig();
     // dialogConfig.disableClose = true ;
     dialogConfig.autoFocus = true;
@@ -46,7 +46,30 @@ export class BooksComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.bookItem(this.fileItem);
+    
+    //console.log(this.fileItem);
+    this.service.getBook().subscribe(
+      list =>{
+        let array = list.map(item => {
+          return {
+            $key : item.key,
+            ...item.payload.val()           
+          };
+        // });
+        
+        
+        // this.listData.sort = this.sort2;
+        // this.listData.paginator = this.pages;
+      }
+      
+    );
+    this.arrayBook = array;  
+    this.listData = new MatTableDataSource(array);
+    this.bookShow = this.listData.filteredData;  
+    this.bookItem(this.fileItem);
+  });
+
+    
   }
 
 }

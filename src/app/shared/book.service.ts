@@ -9,6 +9,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 export class BookService {
 
   constructor(private firebase : AngularFireDatabase) { }
+  filteItem;
   bookList : AngularFireList<any>;
 
   formBook : FormGroup = new FormGroup({
@@ -35,12 +36,14 @@ export class BookService {
   }
 
   insertBook(books){
+    books.fileId = this.filteItem;
     this.bookList.push({
       bookName : books.bookName,
       bookWriter : books.bookWriter,
       bookDes : books.bookDes,
-      fileId : books.fileId
+      fileId : books.fileId,
     })
+
   }
   updateBook(books){
     this.bookList.update(books.$key,{
@@ -56,5 +59,9 @@ export class BookService {
 
   populate(row){
     this.formBook.setValue(row);
+  }
+
+  getFileItem(file){
+    this.filteItem = file;
   }
 }
