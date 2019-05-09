@@ -11,10 +11,10 @@
   </mat-icon>
   <span>Add Files</span>
 </button>
-<mat-grid-list [cols]="breakpoint" rowHeight="400px" (window:resize)="onResize($event)">
+<mat-grid-list [cols]="breakpoint" rowHeight="600px" (window:resize)="onResize($event)">
   <div *ngFor = "let item of fileShow">
     <mat-grid-tile>
-      <mat-card class="files-card">
+      <mat-card class="files-card"  style="position : relative !important">
         <mat-card-header>
           <mat-card-title color="primary">{{item.fileName}}</mat-card-title>
           <span class="fill-remaining-space"></span>
@@ -26,7 +26,7 @@
         <h4>Type : {{item.fileType}}</h4>
         <mat-card-content>
           <p>
-            {{item.fileDes}}
+            -{{item.fileDes}}
           </p>
           <p>
             <app-books [fileItem]="item.$key"></app-books>

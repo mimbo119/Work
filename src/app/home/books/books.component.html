@@ -6,38 +6,78 @@
   </mat-icon>
   <span>Add Books</span>
 </button>
-<div *ngFor = "let item of bookArray">
+<div *ngFor="let item of bookArray">
   <p>
     books works! for {{item.bookName}}
   </p>
 </div>
-<div class="mat-elevation-z8">
-  <mat-table  *ngFor = "let item of bookArray" matSort>
+<!-- <div class="mat-elevation-z8">
+  <table mat-table [dataSource]="bookArray" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="bookName">
-        <mat-header-cell 
-        *matHeaderCellDef 
-        mat-sort-header> Book Name </mat-header-cell>
-        <mat-cell>{{item.bookName}}</mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Book Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.bookName}} </td>
     </ng-container>
     <ng-container matColumnDef="bookWriter">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Writer </mat-header-cell>
-        <mat-cell>{{item.bookWriter}}</mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Writer </th>
+      <td mat-cell *matCellDef="let element"> {{element.bookWriter}} </td>
     </ng-container>
     <ng-container matColumnDef="bookDes">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
-        <mat-cell>{{item.bookDes}}</mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.bookDes}} </td>
     </ng-container>
     <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <button mat-icon-button (click) = "onEdit(row)"><mat-icon>edit</mat-icon></button>
-          <button mat-icon-button color="warn" (click) = "onDelete(row.$key)"><mat-icon>delete_outline</mat-icon>></button>
-        </mat-cell>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="onEdit(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(row.$key)">
+          <mat-icon>delete_outline</mat-icon>>
+        </button>
+      </td>
     </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="5" showFirstLastButtons>
+
+  </mat-paginator>
+</div> -->
+
+<div class="mat-elevation-z8" style="overflow : scroll !important; ">
+  <mat-table [dataSource]="bookData" >
+    <ng-container matColumnDef="bookName">
+      <mat-header-cell *matHeaderCellDef > Book Name </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.bookName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="bookWriter">
+      <mat-header-cell *matHeaderCellDef > Book Writer </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.bookWriter}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="bookDes">
+      <mat-header-cell *matHeaderCellDef > Description </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.bookDes}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="onEdit(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(row.$key)">
+          <mat-icon>delete_outline</mat-icon>>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <!-- <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef  colspan= "6" >
+          <b><i>No Data Found</i></b>
+      </mat-footer-cell>
+    </ng-container> -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <!-- <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'show' : bookData == null}" ></mat-footer-row> -->
   </mat-table>
-  <mat-paginator [pageSizeOptions] = "[5, 10, 25, 50, 100]" [pageSize] = "5" showFirstLastButtons >
-
+  <mat-paginator [pageSizeOptions]="[5]" [pageSize]="5" showFirstLastButtons>
   </mat-paginator>
 </div>

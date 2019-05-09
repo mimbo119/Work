@@ -60,6 +60,10 @@ export class BookService {
   populate(row){
     this.formBook.setValue(row);
   }
+  
+  deleteFile($key : string){
+    this.bookList.remove($key);
+  }
 
   getFileItem(file){
     this.filteItem = file;
