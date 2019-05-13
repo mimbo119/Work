@@ -25,6 +25,7 @@ export class BooksComponent implements OnInit {
   listData: MatTableDataSource<any>
   bookData : MatTableDataSource<any>
   bookShow = [];
+  bookShowFlag : boolean = false;
   
   bookArray: PeriodicElement[];
   displayedColumns: string[] = ['bookName', 'bookWriter', 'bookDes', 'actions'];
@@ -35,16 +36,22 @@ export class BooksComponent implements OnInit {
 
   bookItem(file) {
     let tempbookArray = [];
-    for (var i = 0; i <= this.arrayBook.length; i++) {
+    for (var i = 0; i < this.arrayBook.length; i++) {
       if (this.arrayBook[i].fileId == file) {
         tempbookArray.push(this.arrayBook[i]);
       }
+    }
+    if(tempbookArray != null && tempbookArray.length >= 1){
       this.bookData = new MatTableDataSource(tempbookArray);
       this.bookData.paginator = this.pages;
+      this.bookShowFlag = true;
+    }
+    else{
+      this.bookShowFlag = false;
     }
   }
   onCreateBooks(fileItem) {
-    console.log(fileItem)
+    //console.log(fileItem)
     this.service.getFileItem(fileItem);
     const dialogConfig = new MatDialogConfig();
     // dialogConfig.disableClose = true ;
@@ -64,18 +71,19 @@ export class BooksComponent implements OnInit {
     dialogConfig.height= "70%";
     dialogConfig.minWidth = "25%";
     this.dialog.open(BooksAddComponent, dialogConfig);
+    
   }
 
   onDelete($key){
     if(confirm('Are you sure?')){
-    this.service.deleteFile($key);
+    this.service.deleteFile($key).subscribe(()=>{
+      this.booksLoad();
+    });
     }
+    
   }
 
-
-  ngOnInit() {
-
-    //console.log(this.fileItem);
+  booksLoad(){
     this.service.getBook().subscribe(
       list => {
         let array = list.map(item => {
@@ -96,8 +104,10 @@ export class BooksComponent implements OnInit {
         this.bookShow = this.listData.filteredData;
         this.bookItem(this.fileItem);
       });
+  }
 
-
+  ngOnInit() {
+    this.booksLoad();
   }
 
 }

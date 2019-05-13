@@ -63,6 +63,7 @@ export class BookService {
   
   deleteFile($key : string){
     this.bookList.remove($key);
+    return this.bookList.snapshotChanges();
   }
 
   getFileItem(file){

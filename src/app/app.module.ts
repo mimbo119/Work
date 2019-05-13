@@ -7,11 +7,13 @@ import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginPageComponent } from './login/login-page/login-page.component';
+import { SignupComponent } from './login/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { LoginPageComponent } from './login/login-page/login-page.component';
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SignupComponent]
 })
 export class AppModule { }

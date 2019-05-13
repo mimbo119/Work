@@ -6,12 +6,12 @@
   </mat-icon>
   <span>Add Books</span>
 </button>
-<div *ngFor="let item of bookArray">
+<!-- <div *ngFor="let item of bookArray">
   <p>
     books works! for {{item.bookName}}
   </p>
 </div>
-<!-- <div class="mat-elevation-z8">
+<div class="mat-elevation-z8">
   <table mat-table [dataSource]="bookArray" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="bookName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Book Name </th>
@@ -44,7 +44,7 @@
   </mat-paginator>
 </div> -->
 
-<div class="mat-elevation-z8" style="overflow : scroll !important; ">
+<div *ngIf = "bookShowFlag" class="mat-elevation-z8" style="overflow : scroll !important; ">
   <mat-table [dataSource]="bookData" >
     <ng-container matColumnDef="bookName">
       <mat-header-cell *matHeaderCellDef > Book Name </mat-header-cell>
@@ -80,4 +80,15 @@
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5]" [pageSize]="5" showFirstLastButtons>
   </mat-paginator>
+</div>
+
+<div *ngIf = "!bookShowFlag">
+  <P style="
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic
+  ">
+    <mat-icon>error</mat-icon> No books added yet!
+  </P>
 </div>
