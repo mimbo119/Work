@@ -11,13 +11,13 @@
           <mat-error>This field is mandatory</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Password" required>
+          <input matInput type="password" placeholder="Password" required>
         </mat-form-field>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary">Log In</button>
-      <button mat-raised-button color="warn" (click) = "signUp()">Sign Up</button>
+      <button mat-raised-button color="primary" (click) = "logIn()">Log In</button>
+      <button mat-raised-button color="warn" [routerLink]="['/signUp']" (click) = "signUp()">Sign Up</button>
     </mat-card-actions>
   </mat-card>
 </div>

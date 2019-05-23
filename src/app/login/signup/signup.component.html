@@ -1,25 +1,20 @@
 <mat-toolbar color="primary">
   <span>Sign Up</span>
 </mat-toolbar>
-<!-- <div style=" height:60%; width: 100%; position: relative;">
-  <form [formGroup]="service.formFile" class="normal-form" (submit)="onSubmit()">
+<div style=" height:60%; width: 100%; position: relative;">
+  <form [formGroup]="service.formUser" class="normal-form">
     <div class="controls-container">
-      <input type="hidden" formControlName="$key">
       <mat-form-field>
-        <input formControlName="fileName" matInput placeholder="File Name">
+        <input formControlName="userName" matInput placeholder="User Name">
         <mat-error>This field is mandatory</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="fileType" matInput placeholder="Type">
+        <input type="password" formControlName="pass" matInput placeholder="Password">
         <mat-error>This field is mandatory</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input formControlName="fileDes" matInput placeholder="Description">
       </mat-form-field>
       <div class="button_row">
-        <button mat-raised-button color="primary" type="submit" [disabled]="service.formFile.invalid">Submit</button>
-        <button mat-raised-button color="warn" (click)="onClear()">Clear!</button>
+        <button mat-raised-button color="primary" type="submit" (click)="get()" [disabled]="service.formUser.invalid">Sign Up</button>
       </div>
     </div>
   </form>
-</div> -->
+</div>

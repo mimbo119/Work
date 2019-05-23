@@ -11,9 +11,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { environment } from "../../environments/environment";
 import { MaterialModule } from '../material/material.module';
+import { SignupService } from '../shared/signup.service';
+import { LoginService } from '../shared/login.service';
 
 
 @NgModule({
@@ -28,8 +31,9 @@ import { MaterialModule } from '../material/material.module';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers : [],
+  providers : [SignupService, LoginService ],
   entryComponents : []
 })
 export class LoginModule { }
