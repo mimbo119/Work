@@ -13,7 +13,7 @@
         <mat-error>This field is mandatory</mat-error>
       </mat-form-field>
       <div class="button_row">
-        <button mat-raised-button color="primary" type="submit" (click)="get()" [disabled]="service.formUser.invalid">Sign Up</button>
+        <button mat-raised-button color="primary" type="submit" (click)="tryRegister(service.formUser.value)" [disabled]="service.formUser.invalid">Sign Up</button>
       </div>
     </div>
   </form>

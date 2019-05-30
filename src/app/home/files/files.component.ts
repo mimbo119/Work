@@ -3,6 +3,7 @@ import { MatDialogConfig, MatDialog, MatTableDataSource } from '@angular/materia
 import { FilesAddComponent } from '../files-add/files-add.component';
 import { BooksComponent } from '../books/books.component';
 import { FilesAddService } from 'src/app/shared/files-add.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-files',
@@ -13,7 +14,8 @@ export class FilesComponent implements OnInit {
 
   constructor(private dialog : MatDialog,
               private books : BooksComponent,
-              private service : FilesAddService) { }
+              private service : FilesAddService,
+              private authService : AuthService) { }
   
   listData : MatTableDataSource<any>;
   fileShow = [];

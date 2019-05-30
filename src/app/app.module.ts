@@ -8,6 +8,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { SignupComponent } from './login/signup/signup.component';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from 'src/environments/environment';
+import { AuthGuard } from './auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -21,10 +27,13 @@ import { SignupComponent } from './login/signup/signup.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
 
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [SignupComponent]
 })

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogConfig, MatDialog, MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { SignupComponent } from '../signup/signup.component';
 import { LoginService } from 'src/app/shared/login.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,12 +11,11 @@ import { LoginService } from 'src/app/shared/login.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private service : LoginService) { }
+  constructor(private dialog: MatDialog, private service : LoginService, private authService : AuthService) { }
 
-  logIn(){
-    console.log("ok in component");
-    this.service.get();
-
+  logIn(userEmail, userPassword){
+    userEmail = userEmail + "@mail.com"
+    this.authService.login(userEmail, userPassword);
   }
 
   // logIn2(){
